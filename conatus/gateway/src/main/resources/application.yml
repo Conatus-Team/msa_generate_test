@@ -1,0 +1,98 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  cloud:
+    gateway:
+      routes:
+        - id: Chatting
+          uri: http://localhost:8081
+          predicates:
+            - Path=/chattings/** 
+        - id: Lecture
+          uri: http://localhost:8082
+          predicates:
+            - Path=/lectures/** 
+        - id: Group
+          uri: http://localhost:8083
+          predicates:
+            - Path=/groups/** 
+        - id: Auth
+          uri: http://localhost:8084
+          predicates:
+            - Path=/authUserInfos/** 
+        - id: RecommendSystem
+          uri: http://localhost:8085
+          predicates:
+            - Path=/recommendUserInfos/** 
+        - id: Mypage
+          uri: http://localhost:8086
+          predicates:
+            - Path=/hobbyInfos/** 
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: Chatting
+          uri: http://Chatting:8080
+          predicates:
+            - Path=/chattings/** 
+        - id: Lecture
+          uri: http://Lecture:8080
+          predicates:
+            - Path=/lectures/** 
+        - id: Group
+          uri: http://Group:8080
+          predicates:
+            - Path=/groups/** 
+        - id: Auth
+          uri: http://Auth:8080
+          predicates:
+            - Path=/authUserInfos/** 
+        - id: RecommendSystem
+          uri: http://RecommendSystem:8080
+          predicates:
+            - Path=/recommendUserInfos/** 
+        - id: Mypage
+          uri: http://Mypage:8080
+          predicates:
+            - Path=/hobbyInfos/** 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080

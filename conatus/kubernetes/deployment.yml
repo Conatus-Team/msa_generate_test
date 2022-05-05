@@ -1,0 +1,342 @@
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Chatting
+  labels:
+    app: Chatting
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Chatting
+  template:
+    metadata:
+      labels:
+        app: Chatting
+    spec:
+      containers:
+        - name: Chatting
+          image: username/Chatting:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Lecture
+  labels:
+    app: Lecture
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Lecture
+  template:
+    metadata:
+      labels:
+        app: Lecture
+    spec:
+      containers:
+        - name: Lecture
+          image: username/Lecture:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Group
+  labels:
+    app: Group
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Group
+  template:
+    metadata:
+      labels:
+        app: Group
+    spec:
+      containers:
+        - name: Group
+          image: username/Group:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Auth
+  labels:
+    app: Auth
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Auth
+  template:
+    metadata:
+      labels:
+        app: Auth
+    spec:
+      containers:
+        - name: Auth
+          image: username/Auth:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: RecommendSystem
+  labels:
+    app: RecommendSystem
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: RecommendSystem
+  template:
+    metadata:
+      labels:
+        app: RecommendSystem
+    spec:
+      containers:
+        - name: RecommendSystem
+          image: username/RecommendSystem:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: Mypage
+  labels:
+    app: Mypage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: Mypage
+  template:
+    metadata:
+      labels:
+        app: Mypage
+    spec:
+      containers:
+        - name: Mypage
+          image: username/Mypage:latest
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 10
+          livenessProbe:
+            httpGet:
+              path: '/actuator/health'
+              port: 8080
+            initialDelaySeconds: 120
+            timeoutSeconds: 2
+            periodSeconds: 5
+            failureThreshold: 5
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: Chatting
+  labels:
+    app: Chatting
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: Chatting
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: Lecture
+  labels:
+    app: Lecture
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: Lecture
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: Group
+  labels:
+    app: Group
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: Group
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: Auth
+  labels:
+    app: Auth
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: Auth
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: RecommendSystem
+  labels:
+    app: RecommendSystem
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: RecommendSystem
+
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: Mypage
+  labels:
+    app: Mypage
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    app: Mypage
+
